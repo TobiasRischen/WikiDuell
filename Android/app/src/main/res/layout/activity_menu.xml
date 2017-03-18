@@ -1,62 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical" android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:weightSum="1">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25px"
-        app:srcCompat="@mipmap/wikiearth" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:text="@string/logo_source"
-        android:textAlignment="textEnd"
-        android:textColorLink="@color/colorPrimaryDark"
-        android:textSize="8sp" />
+<ImageView
+    android:id="@+id/imageView5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25px"
+    app:srcCompat="@mipmap/wikiearth"
+    android:layout_weight="0.21" />
 
     <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
-        android:fontFamily="serif"
-        android:text="WikiDuell"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="italic" />
+    android:id="@+id/textViewTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10px"
+    android:fontFamily="serif"
+    android:text="WikiDuell"
+    android:textAlignment="center"
+    android:textSize="30sp"
+    android:textStyle="italic" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25px"
-        android:background="#cfe8ff"
-        android:onClick="startSingleplayer"
-        android:text="Start Singleplayer" />
+<Button
+    android:id="@+id/button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25px"
+    android:background="#cfe8ff"
+    android:onClick="startSingleplayer"
+    android:text="Start Singleplayer" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
-        android:background="#cfe8ff"
-        android:text="Start Multiplayer" />
+<Button
+    android:id="@+id/button2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10px"
+    android:background="#cfe8ff"
+    android:text="Start Multiplayer" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
-        android:background="#cfe8ff"
-        android:text="Leaderboard" />
+<Button
+    android:id="@+id/button3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10px"
+    android:background="#cfe8ff"
+    android:text="Leaderboard"
+    android:onClick="startLeaderboard"/>
 
 </LinearLayout>
