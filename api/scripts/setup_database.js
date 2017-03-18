@@ -41,7 +41,7 @@ const QUERIES = [
       created       DATETIME NOT NULL DEFAULT now(),
       last_updated  DATETIME NOT NULL DEFAULT now());`,
 
-  `DROP TABLE IF EXISTS scenarios`,
+  `DROP TABLE IF EXISTS scenario`,
   `CREATE TABLE
     scenario(
       id            INT AUTO_INCREMENT PRIMARY KEY,
