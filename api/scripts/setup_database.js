@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const async = require('async');
 const _ = require('lodash');
-const credentials = require('./credentials.json');
+const credentials = require('../credentials.json');
 
 let connection = mysql.createConnection({
   host: credentials.host,
