@@ -1,0 +1,2 @@
+# WikiDuell
+Multiplayer Wikipedia Game 
