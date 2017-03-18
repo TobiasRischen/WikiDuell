@@ -25,6 +25,7 @@ const QUERIES = [
     game(
       id            INT AUTO_INCREMENT PRIMARY KEY,
       uuid          TEXT NOT NULL,
+      short_id      TEXT NOT NULL,
       scenario_id   INT NOT NULL,
       started       BOOL DEFAULT 0,
       ended         BOOL DEFAULT 0,
@@ -38,6 +39,8 @@ const QUERIES = [
       game_id       INT NOT NULL,
       time          INT,
       clicks        INT,
+      is_creator    BOOL DEFAULT 0,
+      last_ping     DATETIME NOT NULL DEFAULT now(),
       created       DATETIME NOT NULL DEFAULT now(),
       last_updated  DATETIME NOT NULL DEFAULT now());`,
 
