@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\SirTobi92\Documents\GitHub\WikiDuell2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\SirTobi92\Documents\GitHub\WikiDuell2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_72bab60f3ee67f08a8b0e1f3544e4f70d639e119\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\SirTobi92\Documents\GitHub\WikiDuell2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="772d1ee8d075fe25dd4938a45a75a0102262969c">
+        <dex dex="C:\Users\SirTobi92\Documents\GitHub\WikiDuell2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a53da31cbfe021159d5f9575bc1fe0aa40914693\classes.dex" />
+    </item>
+
+</items>
