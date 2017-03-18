@@ -1,4 +1,3 @@
-'use strict';
 const mysql = require('mysql');
 const async = require('async');
 const _ = require('lodash');
@@ -17,6 +16,7 @@ const QUERIES = [
     user(
       id            INT AUTO_INCREMENT PRIMARY KEY,
       uuid          TEXT NOT NULL,
+      name          TEXT NOT NULL,
       created       DATETIME NOT NULL DEFAULT now(),
       last_updated  DATETIME NOT NULL DEFAULT now());`,
 
@@ -24,24 +24,26 @@ const QUERIES = [
   `CREATE TABLE
     game(
       id            INT AUTO_INCREMENT PRIMARY KEY,
-      start         TEXT NOT NULL,
-      end           TEXT NOT NULL,
-      time          INT,
-      clicks        INT,
+      uuid          TEXT NOT NULL,
+      scenario_id   INT NOT NULL,
+      started       BOOL DEFAULT 0,
+      ended         BOOL DEFAULT 0,
       created       DATETIME NOT NULL DEFAULT now(),
       last_updated  DATETIME NOT NULL DEFAULT now());`,
 
   `DROP TABLE IF EXISTS user_in_game`,
   `CREATE TABLE
     user_in_game(
-      user_id         INT NOT NULL,
-      game_id         INT NOT NULL,
+      user_id       INT NOT NULL,
+      game_id       INT NOT NULL,
+      time          INT,
+      clicks        INT,
       created       DATETIME NOT NULL DEFAULT now(),
       last_updated  DATETIME NOT NULL DEFAULT now());`,
 
-`DROP TABLE IF EXISTS scenarios`,
+  `DROP TABLE IF EXISTS scenarios`,
   `CREATE TABLE
-    scenarios(
+    scenario(
       id            INT AUTO_INCREMENT PRIMARY KEY,
       start         TEXT NOT NULL,
       end           TEXT NOT NULL,
