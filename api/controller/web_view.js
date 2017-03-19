@@ -23,6 +23,7 @@ module.exports.start_single_player = (req, res) => {
     if (err) throw err;
     req.session.start = JSON.parse(body).start;
     req.session.end = JSON.parse(body).end;
+    req.session.clicks = -1;
     res.redirect(`/wiki/${_.last(req.session.start.split('/'))}`);
   });
 }
