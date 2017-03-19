@@ -28,6 +28,7 @@ public class MultiplayerActivity extends AppCompatActivity {
     private String[] gameData;
     private String username;
     boolean isClosed = false;
+    boolean changedStatus = false;
 
     String gameId;
     String startUrl;
@@ -97,9 +98,48 @@ public class MultiplayerActivity extends AppCompatActivity {
         final TextView textViewCode = (TextView) findViewById(R.id.textViewCode);
         textViewCode.setText(shortID);
 
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                while(!changedStatus) {
+                    String jsonData = "";
+                    String jsonOld = "";
+                    try {
+                        URL url = new URL("http://207.154.218.60/game_status" + "?userId=" + id + "&gameId=" + gameId);
+                        url.openStream();
+                        URLConnection con = url.openConnection();
+                        InputStream in = con.getInputStream();
+                        String encoding = con.getContentEncoding();  // ** WRONG: should use "con.getContentType()" instead but it returns something like "text/html; charset=UTF-8" so this value must be parsed to extract the actual encoding
+                        encoding = encoding == null ? "UTF-8" : encoding;
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        byte[] buf = new byte[8192];
+                        int len = 0;
+                        while ((len = in.read(buf)) != -1) {
+                            baos.write(buf, 0, len);
+                        }
+                        jsonData = new String(baos.toByteArray(), encoding);
+                        if (!jsonData.equals(jsonOld)) {
+                            updateTextField(jsonData);
+                            jsonOld = jsonData;
+                        }
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+
+    public void updateTextField(String json) {
+        final TextView textViewPlayers = (TextView) findViewById(R.id.textViewPlayers);
+        textViewPlayers.setText(json);
     }
 
     public void closeGame(View view) {
+        changedStatus = true;
         new Thread(new Runnable() {
 
             @Override
@@ -128,6 +168,7 @@ public class MultiplayerActivity extends AppCompatActivity {
     }
 
     public void startGame(View view) {
+        changedStatus = true;
         new Thread(new Runnable() {
 
             @Override
@@ -152,6 +193,7 @@ public class MultiplayerActivity extends AppCompatActivity {
             }
         }
         Intent intent = new Intent(MultiplayerActivity.this, GameActivity.class);
+        intent.putExtra("EXTRA_SESSION_ID", "" + gameId + " " + startUrl + " " + endUrl + " " + shortID);
         startActivity(intent);
     }
 }

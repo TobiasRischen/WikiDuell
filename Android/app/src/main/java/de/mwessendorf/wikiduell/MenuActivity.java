@@ -141,4 +141,9 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void joinMultiplayer(View view) {
+        Intent intent = new Intent(MenuActivity.this, JoinActivity.class);
+        startActivity(intent);
+    }
+
 }
