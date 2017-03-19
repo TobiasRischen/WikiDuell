@@ -3,6 +3,7 @@ const expressStatusMonitor = require('express-status-monitor');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const connection = require('./database');
+const session = require('express-session');
 const helper = require('./helper');
 const validatorParams = helper.validatorParams;
 
@@ -14,11 +15,19 @@ const app = express();
 /**
  * Middlewares
  */
+app.set('views', './views');
+app.set('view engine', 'hbs');
+
 app.use(express.static('public'));
 app.use(expressStatusMonitor());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'SESSION_SECRET',
+}));
 
 /**
  * Routes
@@ -41,8 +50,12 @@ app.get('/game_status', (req, res, next) => validatorParams(req, res, next, game
 const pingController = require('./controller/ping')
 app.get('/ping', (req, res, next) => validatorParams(req, res, next, pingController.schema) , pingController.func);
 
-const wikiProxyController = require('./controller/wiki_proxy')
+const wikiProxyController = require('./controller/wiki_proxy');
 app.get('/wiki/:wikiPath', wikiProxyController);
+
+const webViewController = require('./controller/web_view');
+app.get('/web_view', webViewController.index)
+app.post('/web_view/login', webViewController.login)
 
 
 // TODO APIS:

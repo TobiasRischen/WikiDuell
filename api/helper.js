@@ -3,9 +3,11 @@ const util = require('util');
 module.exports.responeFunc = function (res, err, result) {
   if (err) {
     res.status(err.status);
+    console.log(err.data);
     return res.json(err.data);
   }
   res.status(200);
+  console.log(result);
   return res.json(result);
 }
 
