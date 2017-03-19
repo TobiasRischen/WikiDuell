@@ -10,30 +10,38 @@ import java.util.ArrayList;
  */
 
 public class ReadDataLocal {
-    private FileReader fw;
-    private BufferedReader bw;
+    private FileReader fr;
+    private BufferedReader br;
 
 
     public ReadDataLocal() throws IOException {
         super();
-        this.fw = new FileReader("log.txt");
-        this.bw = new BufferedReader(fw);
+        this.fr = new FileReader("log.txt");
+        this.br = new BufferedReader(fr);
     }
-    public String[] readAll() throws IOException {
-        ArrayList<String> content = new ArrayList<String>();
-        String temp = "";
-        while((temp=bw.readLine())!=null) {
-            content.add(temp);
+    public String readAll() throws IOException {
+        try {
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                sb.append(line + "\n");
+                line = br.readLine();
+            }
+            String everything = sb.toString();
+            return everything;
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
         }
-        return (String[]) content.toArray();
+        return null;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#finalize()
      */
     @Override
     protected void finalize() throws Throwable {
-        fw = null;
-        bw = null;
+        fr = null;
+        br = null;
         super.finalize();
     }
 }
