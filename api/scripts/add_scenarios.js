@@ -23,7 +23,7 @@ connection.connect(err => {
   fs.readFile(filePath, 'utf8', function (err, data) {
     if (err) throw err;
     let insertData = [];
-    _.each(data.split('\r\n'), row => {
+    _.each(data.split('\n'), row => {
       insertData.push(row.split(' '));
     });
 
