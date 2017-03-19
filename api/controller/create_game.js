@@ -17,7 +17,7 @@ post /creategame
 => { userid }
 <= { gameid, start, end }*/
 module.exports.func = (req, res) => {
-  let userId = req.body.userId;
+  let userId = req.query.userId;
   async.waterfall([
     // check if user_id (uuid) exists
     function (callback) {

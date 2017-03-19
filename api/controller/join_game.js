@@ -19,8 +19,8 @@ post /join_game
 => { short_id, user_id }
 <= { gameid, start, end, short_id }*/
 module.exports.func = (req, res) => {
-  let userId = req.body.userId;
-  let shortId = req.body.shortId;
+  let userId = req.query.userId;
+  let shortId = req.query.shortId;
   async.waterfall([
     // get user by userid 
     function (callback) {

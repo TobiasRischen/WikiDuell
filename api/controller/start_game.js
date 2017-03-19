@@ -19,8 +19,8 @@ post /start_game
 => { userId, gameId }
 <= */
 module.exports.func = (req, res) => {
-  let userId = req.body.userId;
-  let gameId = req.body.gameId;
+  let userId = req.query.userId;
+  let gameId = req.query.gameId;
   async.waterfall([
     // get user by userid 
     function (callback) {

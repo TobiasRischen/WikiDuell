@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const connection = require('./database');
 const helper = require('./helper');
-const validatorBody = helper.validatorBody;
 const validatorParams = helper.validatorParams;
 
 
@@ -27,20 +26,20 @@ app.use(expressValidator());
 const createUserController = require('./controller/create_user');
 app.get('/create_user', (req, res, next) => validatorParams(req, res, next, createUserController.schema) , createUserController.func);
 const createGameController = require('./controller/create_game');
-app.post('/create_game', (req, res, next) => validatorBody(req, res, next, createGameController.schema) , createGameController.func);
+app.get('/create_game', (req, res, next) => validatorParams(req, res, next, createGameController.schema) , createGameController.func);
 const gameResultController = require('./controller/game_result')
-app.post('/game_result', (req, res, next) => validatorBody(req, res, next, gameResultController.schema) , gameResultController.func);
+app.get('/game_result', (req, res, next) => validatorParams(req, res, next, gameResultController.schema) , gameResultController.func);
 app.get('/random_scenario', require('./controller/random_scenario'));
 const joinGameController = require('./controller/join_game')
-app.post('/join_game', (req, res, next) => validatorBody(req, res, next, joinGameController.schema) , joinGameController.func);
+app.get('/join_game', (req, res, next) => validatorParams(req, res, next, joinGameController.schema) , joinGameController.func);
 const endGameController = require('./controller/end_game')
-app.post('/end_game', (req, res, next) => validatorBody(req, res, next, endGameController.schema) , endGameController.func);
+app.get('/end_game', (req, res, next) => validatorParams(req, res, next, endGameController.schema) , endGameController.func);
 const startGameController = require('./controller/start_game')
-app.post('/start_game', (req, res, next) => validatorBody(req, res, next, startGameController.schema) , startGameController.func);
+app.get('/start_game', (req, res, next) => validatorParams(req, res, next, startGameController.schema) , startGameController.func);
 const gameStatusController = require('./controller/game_status')
-app.post('/game_status', (req, res, next) => validatorBody(req, res, next, gameStatusController.schema) , gameStatusController.func);
+app.get('/game_status', (req, res, next) => validatorParams(req, res, next, gameStatusController.schema) , gameStatusController.func);
 const pingController = require('./controller/ping')
-app.post('/ping', (req, res, next) => validatorBody(req, res, next, pingController.schema) , pingController.func);
+app.get('/ping', (req, res, next) => validatorParams(req, res, next, pingController.schema) , pingController.func);
 // TODO APIS:
 // start game
 // join game

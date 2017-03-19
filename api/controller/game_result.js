@@ -26,10 +26,10 @@ post /game_result
 <= {}
 */
 module.exports.func = (req, res) => {
-  let userId = req.body.userId;
-  let gameId = req.body.gameId;
-  let time = req.body.time;
-  let clicks = req.body.clicks;
+  let userId = req.query.userId;
+  let gameId = req.query.gameId;
+  let time = req.query.time;
+  let clicks = req.query.clicks;
   async.waterfall([
     // check if user_id (uuid) exists
     function (callback) {
