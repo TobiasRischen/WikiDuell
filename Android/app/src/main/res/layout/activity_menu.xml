@@ -11,9 +11,8 @@ android:weightSum="1">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="25px"
-    app:srcCompat="@mipmap/wikiearth"
-    android:layout_weight=
-        "0.2" />
+    app:srcCompat="@mipmap/ic_launcher"
+    android:layout_weight="0.21" />
 
     <TextView
     android:id="@+id/textViewTitle"
@@ -41,9 +40,19 @@ android:weightSum="1">
     android:layout_height="wrap_content"
     android:layout_marginTop="10px"
     android:background="#cfe8ff"
-    android:text="Start Multiplayer" />
+    android:text="Start Multiplayer"
+    android:onClick="startMultiplayer" />
 
-<Button
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px"
+        android:background="#cfe8ff"
+        android:text="Join Multiplayer"
+        android:onClick="joinMultiplayer" />
+
+    <Button
     android:id="@+id/button3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
