@@ -51,7 +51,7 @@ module.exports.func = (req, res) => {
       connection.query('INSERT INTO game SET ?', {
         uuid: uuidV4(),
         scenario_id: scenario.id,
-        short_id: _.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', 4).join('')
+        short_id: _.sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', 4).join('')
       }, function (err, result) {
         if (err) {
           console.error(err);
