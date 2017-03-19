@@ -1,7 +1,9 @@
 package de.mwessendorf.wikiduell;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +11,9 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -31,6 +35,31 @@ public class MainActivity extends AppCompatActivity {
     String finishUrlTitle;
     //StoreDataLocal dataStorage = null;
 
+
+
+
+    TextView timerTextView;
+    long startTime = 0;
+
+    //runs without a timer by reposting this handler at the end of the runnable
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+
+            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+
+            timerHandler.postDelayed(this, 500);
+        }
+    };
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +70,19 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
+
+        timerTextView = (TextView) findViewById(R.id.textViewTime);
+        timerHandler.removeCallbacks(timerRunnable);
+        startTime = System.currentTimeMillis();
+        timerHandler.postDelayed(timerRunnable, 0);
+
+
+        Context context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
 
 
         new Thread(new Runnable(){
@@ -74,9 +116,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 try{
-                    URL url = new URL("https://de.wikipedia.org" + startURL);
+                    URL url = new URL("https://de.m.wikipedia.org" + startURL);
                     URLConnection con = url.openConnection();
+                    url.openStream();
                     InputStream in = con.getInputStream();
+
+                    startURL = String.valueOf(con.getURL()).replace("https://de.m.wikipedia.org","");
 
                     String encoding = con.getContentEncoding();  // ** WRONG: should use "con.getContentType()" instead but it returns something like "text/html; charset=UTF-8" so this value must be parsed to extract the actual encoding
                     encoding = encoding == null ? "UTF-8" : encoding;
@@ -159,6 +204,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView  view, String  url){
+                if (!url.contains("wikipedia")) {
+                    return true;
+                } else if (!url.contains("/wiki/")) {
+                    return true;
+                }
+
                 // Zählt die Clicks hoch
                 i += 1;
                 final TextView textViewClick = (TextView) findViewById(R.id.textViewClicks);
@@ -174,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 // Wenn die zu ladene Seite die Zeilseite ist
                 if (url.equals(finishURL)) {
                     final TextView textViewTime = (TextView) findViewById(R.id.textViewTime);
-                    textViewTime.setText("WIN!");
+                    textViewTime.setText(timerTextView.getText().toString());
 
                     /*
                     if (dataStorage != null) {
@@ -190,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
                     ShowFinishedActivity.startURL = startURL;
                     ShowFinishedActivity.finishURL = finishURL;
                     ShowFinishedActivity.clickNumber = i;
+                    ShowFinishedActivity.time = timerTextView.getText().toString();
 
 
                     changeToShow(view);

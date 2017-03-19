@@ -17,18 +17,18 @@ tools:context="de.mwessendorf.wikiduell.MainActivity">
     android:textColor="@color/colorPrimaryDark"
     android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/textViewClicks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewTime"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50px"
-        android:text="0 Clicks"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+<TextView
+    android:id="@+id/textViewClicks"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/textViewTime"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="50px"
+    android:text="0 Clicks"
+    android:textAlignment="center"
+    android:textColor="@android:color/black"
+    android:textSize="18sp"
+    android:textStyle="bold" />
 
 <WebView
     android:id="@+id/webview"
@@ -40,34 +40,34 @@ tools:context="de.mwessendorf.wikiduell.MainActivity">
 
 </WebView>
 
-    <TextView
-        android:id="@+id/textViewStartpage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/textViewClicks"
-        android:layout_marginRight="25px"
-        android:layout_toLeftOf="@+id/textViewClicks"
-        android:layout_toStartOf="@+id/textViewClicks"
-        android:text="Startpage"
-        android:textAlignment="viewEnd"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+<TextView
+    android:id="@+id/textViewStartpage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignTop="@+id/textViewClicks"
+    android:layout_marginRight="25px"
+    android:layout_toLeftOf="@+id/textViewClicks"
+    android:layout_toStartOf="@+id/textViewClicks"
+    android:text="Startpage"
+    android:textAlignment="viewEnd"
+    android:textColor="@android:color/black"
+    android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/textViewFinishpage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textViewStartpage"
-        android:layout_alignTop="@+id/textViewClicks"
-        android:layout_marginLeft="25px"
-        android:layout_toEndOf="@+id/textViewClicks"
-        android:layout_toRightOf="@+id/textViewClicks"
-        android:text="Finishpage"
-        android:textAlignment="viewStart"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+<TextView
+    android:id="@+id/textViewFinishpage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/textViewStartpage"
+    android:layout_alignTop="@+id/textViewClicks"
+    android:layout_marginLeft="25px"
+    android:layout_toEndOf="@+id/textViewClicks"
+    android:layout_toRightOf="@+id/textViewClicks"
+    android:text="Finishpage"
+    android:textAlignment="viewStart"
+    android:textColor="@android:color/black"
+    android:textSize="18sp" />
 
 <TextView
     android:id="@+id/textView8"

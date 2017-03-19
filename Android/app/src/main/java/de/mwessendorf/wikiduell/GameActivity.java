@@ -22,7 +22,6 @@ import java.util.regex.Pattern;
 
 public class GameActivity extends AppCompatActivity {
 
-    private static final String serverRandomURL = "http://207.154.218.60/random_scenario";
     String startURL;
     String finishURL;
     boolean isLoaded=false;
@@ -35,6 +34,10 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String s = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        startURL = s.split(" ")[1];
+        finishURL = s.split(" ")[2];
+
         final WebView myWebView = (WebView) findViewById(R.id.webview);
 
         WebSettings webSettings = myWebView.getSettings();
@@ -46,36 +49,13 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                try{
-                    URL url = new URL(serverRandomURL);
-                    URLConnection con = url.openConnection();
-                    InputStream in = con.getInputStream();
-                    String encoding = con.getContentEncoding();  // ** WRONG: should use "con.getContentType()" instead but it returns something like "text/html; charset=UTF-8" so this value must be parsed to extract the actual encoding
-                    encoding = encoding == null ? "UTF-8" : encoding;
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    byte[] buf = new byte[8192];
-                    int len = 0;
-                    while ((len = in.read(buf)) != -1) {
-                        baos.write(buf, 0, len);
-                    }
-                    String body = new String(baos.toByteArray(), encoding);
-                    Log.d(body, "error");
-                    //startURL = body;
-                    startURL = body.split("\"start\":\"")[1].split("\",\"end\"")[0];
-                    finishURL = body.split("\"start\":\"")[1].split("\",\"end\":\"")[1].split("\",\"complexity\"")[0];
-
-
-
-                    //{"start":"/wiki/Uromyces_trifolii-repentis","end":"/wiki/Carduus","complexity":4}
-                } catch (Exception e) {
-                    Log.d("some error occured " + e.getMessage(), "error");
-                    e.printStackTrace();
-                }
 
                 try{
-                    URL url = new URL("https://de.wikipedia.org" + startURL);
+                    URL url = new URL("https://de.m.wikipedia.org" + startURL);
                     URLConnection con = url.openConnection();
                     InputStream in = con.getInputStream();
+
+                    startURL = String.valueOf(con.getURL()).replace("https://de.m.wikipedia.org","");
 
                     String encoding = con.getContentEncoding();  // ** WRONG: should use "con.getContentType()" instead but it returns something like "text/html; charset=UTF-8" so this value must be parsed to extract the actual encoding
                     encoding = encoding == null ? "UTF-8" : encoding;
