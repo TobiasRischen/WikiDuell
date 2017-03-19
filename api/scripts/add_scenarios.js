@@ -11,7 +11,7 @@ let connection = mysql.createConnection({
   database: credentials.database
 });
 
-const filePath = './scenarios/content.txt'
+const filePath = './scenarios/content2.txt'
 
 
 connection.connect(err => {
