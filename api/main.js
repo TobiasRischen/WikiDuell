@@ -40,6 +40,11 @@ const gameStatusController = require('./controller/game_status')
 app.get('/game_status', (req, res, next) => validatorParams(req, res, next, gameStatusController.schema) , gameStatusController.func);
 const pingController = require('./controller/ping')
 app.get('/ping', (req, res, next) => validatorParams(req, res, next, pingController.schema) , pingController.func);
+
+const wikiProxyController = require('./controller/wiki_proxy')
+app.get('/wiki/:wikiPath', wikiProxyController);
+
+
 // TODO APIS:
 // start game
 // join game
