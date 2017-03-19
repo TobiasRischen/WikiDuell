@@ -55,7 +55,7 @@ app.get('/wiki/:wikiPath', wikiProxyController);
 
 const webViewController = require('./controller/web_view');
 app.get('/web_view', webViewController.index)
-app.post('/web_view/login', webViewController.login)
+app.post('/web_view/login', webViewController.login);
 
 
 // TODO APIS:
