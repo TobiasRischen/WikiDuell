@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_weight="0.18" />
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25px"
         app:srcCompat="@mipmap/wikiearth"
-        android:layout_weight="0.21" />
+        android:layout_weight="0.25" />
+
+    <TextView
+        android:text="@string/logo_source"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textAlignment="center"
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -20,10 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10px"
         android:fontFamily="serif"
-        android:text="WikiDuell"
         android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="italic" />
+        android:textSize="36sp"
+        android:textStyle="italic"
+        android:text="Wikiduell"
+        android:paddingTop="-30px"/>
 
     <Button
         android:id="@+id/button"
@@ -32,33 +47,35 @@
         android:layout_marginTop="25px"
         android:background="#cfe8ff"
         android:onClick="startSingleplayer"
-        android:text="Start Singleplayer" />
+        android:text="Start"
+        android:layout_weight="0.03"
+        android:textSize="18sp" />
+    <!--
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:background="#cfe8ff"
+            android:text="Start Multiplayer"
+            android:onClick="startMultiplayer" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
-        android:background="#cfe8ff"
-        android:text="Start Multiplayer"
-        android:onClick="startMultiplayer" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:background="#cfe8ff"
+            android:text="Join Multiplayer"
+            android:onClick="joinMultiplayer" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
-        android:background="#cfe8ff"
-        android:text="Join Multiplayer"
-        android:onClick="joinMultiplayer" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
-        android:background="#cfe8ff"
-        android:text="Leaderboard"
-        android:onClick="startLeaderboard"/>
-
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:background="#cfe8ff"
+            android:text="Leaderboard"
+            android:onClick="startLeaderboard"/>
+    -->
 </LinearLayout>

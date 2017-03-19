@@ -2,6 +2,7 @@ package de.mwessendorf.wikiduell;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     boolean isLoaded=false;
     String startUrlTitle;
     String finishUrlTitle;
+    String description;
     //StoreDataLocal dataStorage = null;
 
 
@@ -75,14 +77,6 @@ public class MainActivity extends AppCompatActivity {
         timerHandler.removeCallbacks(timerRunnable);
         startTime = System.currentTimeMillis();
         timerHandler.postDelayed(timerRunnable, 0);
-
-
-        Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
-        int duration = Toast.LENGTH_LONG;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
 
 
         new Thread(new Runnable(){
@@ -144,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     //System.out.println("some error occured " + e.getMessage() + (wikipediaURL + urlNAme));
                 }
                 try{
-                    URL url = new URL("https://de.wikipedia.org" + finishURL);
+                    URL url = new URL("https://de.m.wikipedia.org" + finishURL);
                     URLConnection con = url.openConnection();
                     InputStream in = con.getInputStream();
 
@@ -157,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                         baos.write(buf, 0, len);
                     }
                     String body = new String(baos.toByteArray(), encoding);
+                    description = body.substring(body.indexOf("<p>")+3,body.indexOf("</p>")).replaceAll("\\<[^>]*>","");
 
                     Pattern linkPattern = Pattern.compile("(<h1 [^>]+>.+?</h1>)", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
                     Matcher pageMatcher = linkPattern.matcher(body);
@@ -170,8 +165,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 isLoaded = true;
 
+
             }
         }).start();
+
+
 
     while(!isLoaded) {
         try {
@@ -180,6 +178,17 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle(finishUrlTitle);
+        alertDialog.setMessage(description);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
 
         final TextView textViewStartpage = (TextView) findViewById(R.id.textViewStartpage);
         textViewStartpage.setText(startUrlTitle);
@@ -198,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url)
             {
                 myWebView.loadUrl("javascript:(function() { " +
-                        "document.querySelector('.header-container').style.display = 'none'; " +
+                        "document.querySelector('.header-container').style.display = 'none';" +
                         "})()");
             }
 
@@ -217,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Laed die neue URL
                 myWebView.loadUrl("javascript:(function() { " +
-                        "document.querySelector('.header-container').style.display = 'none'; " +
+                        "document.querySelector('.header-container').style.display = 'none';" +
                         "})()");
                 myWebView.loadUrl(url);
 
