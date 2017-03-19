@@ -9,8 +9,19 @@ module.exports.responeFunc = function (res, err, result) {
   return res.json(result);
 }
 
-module.exports.validatorFunc = function (req, res, next, schema) {
+module.exports.validatorBody = function (req, res, next, schema) {
   req.checkBody(schema);
+  req.getValidationResult().then(function (result) {
+    if (!result.isEmpty()) {
+      res.status(400);
+      return res.json(result.mapped())
+    }
+    return next();
+  });
+}
+
+module.exports.validatorParams = function (req, res, next, schema) {
+  req.checkQuery(schema);
   req.getValidationResult().then(function (result) {
     if (!result.isEmpty()) {
       res.status(400);

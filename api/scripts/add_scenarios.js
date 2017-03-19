@@ -11,7 +11,7 @@ let connection = mysql.createConnection({
   database: credentials.database
 });
 
-const filePath = './scenarios/content.txt'
+const filePath = './scenarios/content2.txt'
 
 
 connection.connect(err => {
@@ -23,7 +23,7 @@ connection.connect(err => {
   fs.readFile(filePath, 'utf8', function (err, data) {
     if (err) throw err;
     let insertData = [];
-    _.each(data.split('\r\n'), row => {
+    _.each(data.split('\n'), row => {
       insertData.push(row.split(' '));
     });
 

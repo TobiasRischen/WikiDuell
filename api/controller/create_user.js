@@ -15,7 +15,7 @@ module.exports.schema = {
   }
 };
 module.exports.func = (req, res) => {
-  let name = req.body.name;
+  let name = req.query.name;
   async.waterfall([
     // create user
     function (callback) {
