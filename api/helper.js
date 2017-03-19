@@ -3,9 +3,11 @@ const util = require('util');
 module.exports.responeFunc = function (res, err, result) {
   if (err) {
     res.status(err.status);
+    console.log('OUT:', err.data);
     return res.json(err.data);
   }
   res.status(200);
+  console.log('OUT:', result);
   return res.json(result);
 }
 
@@ -29,4 +31,9 @@ module.exports.validatorParams = function (req, res, next, schema) {
     }
     return next();
   });
+}
+
+module.exports.logBefore = function (req, res, next) {
+  console.log('IN:', req.originalUrl);
+  return next();
 }
