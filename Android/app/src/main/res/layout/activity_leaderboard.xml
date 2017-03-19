@@ -5,16 +5,160 @@
     android:weightSum="1">
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/showScoresView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/showScoresView"
-        android:layout_weight="1.00" />
+        android:layout_marginTop="50px"
+        android:layout_weight="0.01"
+        android:text="Leaderboard"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:layout_weight="0.12"
+        android:layout_marginTop="50px">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="0.2"
+                android:text="Rank"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="0.6"
+                android:text="User"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewWins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_weight="0.2"
+                android:text="Wins"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+
+        <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewRank1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginLeft="20px"
+                android:layout_weight="0.2"
+                android:text="1"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewUser1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_weight="0.6"
+            android:text="User1" />
+
+        <TextView
+            android:id="@+id/textViewWins1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_weight="0.2"
+            android:text="Wins1" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewRank2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginLeft="20px"
+                android:layout_weight="0.2"
+                android:text="2"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewUser2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="0.6"
+                android:text="User2" />
+
+            <TextView
+                android:id="@+id/textViewWins2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_weight="0.2"
+                android:text="Wins2" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewRank3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginLeft="20px"
+                android:layout_weight="0.2"
+                android:text="3"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewUser3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="0.6"
+                android:text="User3" />
+
+            <TextView
+                android:id="@+id/textViewWins3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_weight="0.2"
+                android:text="Wins3" />
+
+        </TableRow>
+
+    </TableLayout>
 
     <Button
-        android:text="Ok"
+        android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button5"
-        android:onClick="toMainMenu" />
+        android:layout_marginTop="50px"
+        android:onClick="toMainMenu"
+        android:text="Ok" />
 </LinearLayout>
